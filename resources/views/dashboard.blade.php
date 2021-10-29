@@ -30,11 +30,21 @@
                                 <p class="mt-2 text-gray-600">{{ Str::limit($post->content, 120) }}</p>
                             </div>
                             <div class="flex items-center justify-between mt-4">
-                                <a href="#" class="bg-green-500 text-white px-2 py-1 inline-block rounded-md">Editer
+                                <a href="{{ route('posts.edit', $post) }}"
+                                    class="bg-green-500 text-white px-2 py-1 inline-block rounded-md">Editer
                                     post
                                 </a>
-                                <a href="#" class="bg-red-500 px-2 text-white py-1 inline-block rounded-md">Supprimer
-                                    post
+                                <a href="#" class="bg-red-500 px-2 text-white py-1 inline-block rounded-md" onclick="event.preventDefault; if(confirm('Voulez-vous vraiment supprimer ce post ?')){
+                                         document.getElementById('destroy-post-form').submit()
+                                    }else{
+                                        return false;
+                                    } ;">Supprimer post
+
+                                    <form action="{{ route('posts.destroy', $post) }}" method="POST"
+                                        id="destroy-post-form">
+                                        @csrf
+                                        @method('delete')
+                                    </form>
                                 </a>
 
                                 <div><a href="#" class="flex items-center"><img

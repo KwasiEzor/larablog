@@ -73,7 +73,7 @@
                         </div>
                     @endforeach
 
-                    <div class="mt-8">
+                    {{-- <div class="mt-8">
                         <div class="flex">
                             <a href="#"
                                 class="px-3 py-2 mx-1 font-medium text-gray-500 bg-white rounded-md cursor-not-allowed">
@@ -100,7 +100,9 @@
                                 Next
                             </a>
                         </div>
-                    </div>
+                    </div> --}}
+                    {{ $posts->links() }}
+
                 </div>
                 @include('partials.sidebar')
             </div>

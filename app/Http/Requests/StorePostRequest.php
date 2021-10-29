@@ -23,11 +23,23 @@ class StorePostRequest extends FormRequest
      */
     public function rules()
     {
+        if(request()->routeIs('posts.store')){
+
+            $imageRule = 'image | required';
+        }elseif(request()->routeIs('posts.update')){
+            $imageRule = 'image | sometimes';
+        }
         return [
             'title'=>'required',
             'content'=>'required',
-            'image'=>'required',
+            'image'=>$imageRule,
             'category'=>'required'
         ];
+    }
+    protected function prepareForValidation()
+    {
+        if($this->image == null){
+            $this->request->remove('image');
+        }
     }
 }
