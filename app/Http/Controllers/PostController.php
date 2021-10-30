@@ -116,4 +116,5 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('dashboard')->with('success','Votre post a été bien supprimé ');
     }
+
 }
