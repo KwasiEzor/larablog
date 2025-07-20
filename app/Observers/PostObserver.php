@@ -43,26 +43,21 @@ class PostObserver
     {
         // Check if the image has been changed
         if ($post->wasChanged('image')) {
-            // Get the old image path from the original values (before update)
+            // Always use the raw database value for both old and new image paths
             $oldImage = $post->getOriginal('image');
             $newImage = $post->getRawOriginal('image');
 
-            // If the old image is a full URL, extract the path part
+            // Normalize both paths to be relative to the 'public' disk
             if ($oldImage && str_starts_with($oldImage, '/storage/')) {
                 $oldImage = str_replace('/storage/', '', $oldImage);
             }
-
-            Log::info("PostObserver::updated - Post ID: {$post->id}");
-            Log::info("Old image: " . ($oldImage ?: 'null'));
-            Log::info("New image: " . ($newImage ?: 'null'));
-            Log::info("Old image exists: " . ($oldImage ? (Storage::disk('public')->exists($oldImage) ? 'true' : 'false') : 'N/A'));
+            if ($newImage && str_starts_with($newImage, '/storage/')) {
+                $newImage = str_replace('/storage/', '', $newImage);
+            }
 
             // Delete the old image if it exists and is not the same as the new one
             if ($oldImage && $oldImage !== $newImage && Storage::disk('public')->exists($oldImage)) {
                 Storage::disk('public')->delete($oldImage);
-                Log::info("Old image deleted: {$oldImage}");
-            } else {
-                Log::info("Old image not deleted - conditions not met");
             }
         } else {
             Log::info("PostObserver::updated - Image was not changed for Post ID: {$post->id}");

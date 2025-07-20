@@ -11,19 +11,21 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Contracts\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\Attributes\ObservedBy;
+use App\Traits\Likable;
 
 #[ObservedBy(PostObserver::class)]
 class Post extends Model
 {
     /** @use HasFactory<\Database\Factories\PostFactory> */
-    use HasFactory, Sluggable, SoftDeletes;
+    use HasFactory, Sluggable, SoftDeletes, Likable;
 
-    protected $fillable = ['title', 'excerpt', 'meta_title', 'meta_description', 'meta_keywords', 'slug', 'content', 'image', 'is_published', 'is_featured', 'category_id', 'user_id'];
+    protected $fillable = ['title', 'excerpt', 'meta_title', 'meta_description', 'meta_keywords', 'slug', 'content', 'image', 'is_published', 'is_featured', 'category_id', 'user_id', 'views'];
 
     /**
      * Configure the sluggable behavior for the Post model.
@@ -78,6 +80,24 @@ class Post extends Model
     public function tags(): BelongsToMany
     {
         return $this->belongsToMany(Tag::class);
+    }
+
+    /**
+     * Get the comments for the post.
+     *
+     * @return HasMany<Comment>
+     */
+    public function comments(): HasMany
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Get all of the post's likes.
+     */
+    public function likes()
+    {
+        return $this->morphMany(\App\Models\Like::class, 'likeable');
     }
 
     /**

@@ -56,6 +56,11 @@ class PostResource extends Resource
                         Textarea::make('excerpt')
                             ->maxLength(500)
                             ->rows(3),
+                        // Add views as a disabled field for reference
+                        TextInput::make('views')
+                            ->label('Views')
+                            ->disabled()
+                            ->dehydrated(false),
                     ])->columns(2),
 
                 Forms\Components\Section::make('Content')
@@ -155,6 +160,10 @@ class PostResource extends Resource
                     ->label('Published'),
                 ToggleColumn::make('is_featured')
                     ->label('Featured'),
+                // Add views column
+                TextColumn::make('views')
+                    ->label('Views')
+                    ->sortable(),
                 TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()

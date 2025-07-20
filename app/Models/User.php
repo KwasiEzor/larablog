@@ -94,6 +94,14 @@ class User extends Authenticatable implements FilamentUser
     }
 
     /**
+     * Get all likes made by the user.
+     */
+    public function likes()
+    {
+        return $this->hasMany(\App\Models\Like::class);
+    }
+
+    /**
      * Check if the user can access the Filament admin panel.
      */
     public function canAccessPanel(Panel $panel): bool
