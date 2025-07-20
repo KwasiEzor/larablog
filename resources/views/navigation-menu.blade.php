@@ -16,6 +16,12 @@
                     <x-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
+                    @if(Auth::user()->hasRole(['admin', 'author']))
+                    <x-nav-link href="{{ route('filament.admin.pages.dashboard') }}"
+                        :active="request()->routeIs('filament.admin.*')">
+                        {{ __('Admin Panel') }}
+                    </x-nav-link>
+                    @endif
                     @endauth
                     @guest
                     <x-nav-link href="{{ route('login') }}" :active="request()->routeIs('login')">
@@ -166,6 +172,12 @@
             <x-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
             </x-responsive-nav-link>
+            @if(Auth::user()->hasRole(['admin', 'author']))
+            <x-responsive-nav-link href="{{ route('filament.admin.pages.dashboard') }}"
+                :active="request()->routeIs('filament.admin.*')">
+                {{ __('Admin Panel') }}
+            </x-responsive-nav-link>
+            @endif
             @endauth
         </div>
         @auth

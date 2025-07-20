@@ -16,6 +16,7 @@ export default {
             fontFamily: {
                 sans: ["Instrument Sans", ...defaultTheme.fontFamily.sans],
                 poppins: ["Poppins", ...defaultTheme.fontFamily.sans],
+                outfit: ["Outfit", ...defaultTheme.fontFamily.sans],
             },
             container: {
                 center: true,
