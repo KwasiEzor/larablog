@@ -1,61 +1,237 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Laravel Blog Application
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A modern, feature-rich blog application built with Laravel 12, featuring a powerful admin dashboard powered by Filament, comprehensive role-based access control, and a beautiful user interface.
 
-## About Laravel
+## 🚀 Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Core Blog Features
+- **Post Management**: Create, edit, and publish blog posts with rich text editing
+- **Category System**: Hierarchical categories with parent-child relationships
+- **Tag System**: Flexible tagging system for post organization
+- **Comment System**: User comments with moderation capabilities
+- **User Management**: Complete user registration and profile management
+- **Search & Filtering**: Advanced search and filtering capabilities
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+### Admin Dashboard (Filament)
+- **Modern Admin Interface**: Beautiful, responsive admin panel built with Filament
+- **Complete CRUD Operations**: Full management for all content types
+- **Dashboard Widgets**: Real-time statistics and overview widgets
+- **Rich Text Editor**: Full-featured content editor for posts
+- **Image Management**: File upload with image editing capabilities
+- **Role-based Access**: Secure access control for admin functions
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Role-Based Access Control
+- **Three-tier Role System**: Administrator, Author, and User roles
+- **Granular Permissions**: Fine-grained permission control for all actions
+- **System Protection**: Built-in safeguards for system roles and permissions
+- **Admin Interface**: Complete role and permission management through Filament
 
-## Learning Laravel
+### Authentication & Security
+- **Laravel Jetstream**: Modern authentication scaffolding
+- **Two-Factor Authentication**: Enhanced security with 2FA support
+- **Email Verification**: Secure email verification system
+- **API Token Management**: Secure API access with token management
+- **Session Management**: Advanced session and browser management
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## 🛠️ Technology Stack
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Backend
+- **Laravel 12**: Latest Laravel framework
+- **PHP 8.2+**: Modern PHP with latest features
+- **MySQL/PostgreSQL**: Database support
+- **Spatie Laravel Permission**: Role and permission management
+- **Filament 3**: Admin panel framework
+- **Laravel Jetstream**: Authentication scaffolding
+- **Laravel Sanctum**: API authentication
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Frontend
+- **Tailwind CSS**: Utility-first CSS framework
+- **Alpine.js**: Lightweight JavaScript framework
+- **Vite**: Modern build tool
+- **Blade Templates**: Laravel's templating engine
+- **Livewire**: Dynamic interfaces without leaving PHP
 
-## Laravel Sponsors
+### Development Tools
+- **Pest**: Modern PHP testing framework
+- **Laravel Pint**: PHP code style fixer
+- **Laravel Sail**: Docker development environment
+- **Laravel Pail**: Real-time log viewer
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## 📋 Requirements
 
-### Premium Partners
+- PHP 8.2 or higher
+- Composer
+- Node.js & NPM
+- MySQL 8.0+ or PostgreSQL 13+
+- Redis (optional, for caching)
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🚀 Installation
 
-## Contributing
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd larablog
+   ```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+2. **Install PHP dependencies**
+   ```bash
+   composer install
+   ```
 
-## Code of Conduct
+3. **Install Node.js dependencies**
+   ```bash
+   npm install
+   ```
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. **Environment setup**
+   ```bash
+   cp .env.example .env
+   php artisan key:generate
+   ```
 
-## Security Vulnerabilities
+5. **Configure database**
+   Edit `.env` file with your database credentials:
+   ```env
+   DB_CONNECTION=mysql
+   DB_HOST=127.0.0.1
+   DB_PORT=3306
+   DB_DATABASE=larablog
+   DB_USERNAME=your_username
+   DB_PASSWORD=your_password
+   ```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+6. **Run migrations and seeders**
+   ```bash
+   php artisan migrate
+   php artisan db:seed
+   ```
 
-## License
+7. **Create admin user**
+   ```bash
+   php artisan roles:manage assign-role --user=1 --role=admin
+   ```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+8. **Build assets**
+   ```bash
+   npm run build
+   ```
+
+9. **Start the development server**
+   ```bash
+   php artisan serve
+   ```
+
+## 👥 User Roles & Permissions
+
+### Administrator
+- Full access to all features
+- User and role management
+- System settings access
+- Complete content management
+
+### Author
+- Create and edit posts
+- Manage own comments
+- Access admin panel
+- Category and tag viewing
+
+### User
+- View posts and categories
+- Create comments
+- Basic profile management
+
+## 🎨 Admin Dashboard
+
+Access the admin dashboard at `/admin` (requires admin or author role).
+
+### Key Features:
+- **Dashboard Overview**: Real-time statistics and recent activity
+- **Post Management**: Full CRUD with rich text editor
+- **User Management**: Complete user administration
+- **Role & Permission Management**: Granular access control
+- **Comment Moderation**: Approve/reject user comments
+- **Category & Tag Management**: Content organization tools
+
+## 🗄️ Database Structure
+
+### Core Models
+- **User**: Authentication and profile management
+- **Post**: Blog posts with rich content
+- **Category**: Hierarchical content organization
+- **Tag**: Flexible content tagging
+- **Comment**: User-generated comments
+- **Role**: User role definitions
+- **Permission**: Granular permission system
+
+### Key Relationships
+- Posts belong to categories and have many tags
+- Users can have multiple roles
+- Comments belong to posts and users
+- Categories can have parent-child relationships
+
+## 🧪 Testing
+
+Run the test suite:
+```bash
+php artisan test
+```
+
+The application includes comprehensive tests for:
+- Authentication flows
+- User management
+- Post operations
+- Role and permission system
+- API endpoints
+
+## 📚 Documentation
+
+- [Filament Admin Documentation](FILAMENT_ADMIN.md)
+- [Role & Permission System](ROLE_PERMISSION_SYSTEM.md)
+
+## 🔧 Development
+
+### Available Commands
+```bash
+# Development server with all services
+composer run dev
+
+# Run tests
+composer run test
+
+# Code style fixing
+./vendor/bin/pint
+
+# Real-time logs
+php artisan pail
+```
+
+### Key Directories
+- `app/Filament/` - Admin panel resources and widgets
+- `app/Models/` - Eloquent models
+- `app/Enums/` - Role and permission enums
+- `database/seeders/` - Database seeders
+- `resources/views/` - Blade templates
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Add tests for new functionality
+5. Ensure all tests pass
+6. Submit a pull request
+
+## 📄 License
+
+This project is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+
+## 🆘 Support
+
+For support and questions:
+- Check the documentation files in the project
+- Review Laravel and Filament documentation
+- Open an issue on the repository
+
+---
+
+Built with ❤️ using Laravel, Filament, and modern web technologies.
