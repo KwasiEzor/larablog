@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Comment;
 use App\Models\Post;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -44,12 +45,13 @@ class PostComments extends Component
 
         $comment = Comment::create([
             'post_id' => $this->post->id,
-            'user_id' => auth()->id(),
+            'user_id' => Auth::id(),
             'content' => $this->content,
-            'is_approved' => true, // For demo purposes, in production you might want moderation
+            'is_approved' => true,
         ]);
 
         $this->content = '';
+
         $this->dispatch('comment-added', commentId: $comment->id);
 
         session()->flash('message', 'Comment added successfully!');
@@ -77,10 +79,10 @@ class PostComments extends Component
 
         $reply = Comment::create([
             'post_id' => $this->post->id,
-            'user_id' => auth()->id(),
+            'user_id' => Auth::id(),
             'parent_id' => $this->replyToId,
             'content' => $this->replyContent,
-            'is_approved' => true, // For demo purposes
+            'is_approved' => true,
         ]);
 
         $this->cancelReply();
@@ -94,7 +96,7 @@ class PostComments extends Component
         $comment = Comment::findOrFail($commentId);
 
         // Check if user can delete this comment
-        if (auth()->id() === $comment->user_id || auth()->user()->hasRole('admin')) {
+        if (Auth::id() === $comment->user_id || Auth::user()->hasRole('admin')) {
             $comment->delete();
             session()->flash('message', 'Comment deleted successfully!');
         } else {

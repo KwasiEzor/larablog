@@ -1,10 +1,10 @@
 @props(['post'])
 <div class="flex flex-col h-full overflow-hidden transition bg-white shadow-md rounded-xl group hover:shadow-lg">
     <!-- Post Image -->
-    @if($post->image)
     <div class="relative">
-        <img src="{{ $post->image }}" alt="{{ $post->title }}"
-            class="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105" />
+        <img src="{{ $post->image ?? asset('images/default-post.jpg') }}" alt="{{ $post->title }}"
+            class="object-cover w-full h-48 transition-transform duration-300 group-hover:scale-105"
+            onerror="this.onerror=null;this.src='{{ asset('images/default-post.jpg') }}';" />
         @if($post->is_featured)
         <span
             class="absolute flex items-center px-3 py-1 text-xs font-semibold text-yellow-800 bg-yellow-100 rounded-full top-3 right-3">
@@ -17,7 +17,6 @@
         </span>
         @endif
     </div>
-    @endif
 
     <div class="flex flex-col flex-1 p-5 space-y-3">
         <!-- Category -->
